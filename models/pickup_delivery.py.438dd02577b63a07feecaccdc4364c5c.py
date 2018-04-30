@@ -8,9 +8,9 @@ class pickup_delivery_trip(models.Model):
     _name = "pickup.delivery.trip"
     _description = "Modul for pickup and delivery trip system"
 
-    name = fields.Char('No. Trip', require=True)
-    courier_id = fields.Many2one('hr.employee','Courier', ondelete='restrict', require=True)
-    vehicle_id = fields.Many2one('fleet.vehicle','Vehicle', ondelete='restrict', require=True)
+    name = fields.Char('No. Trip')
+    courier_id = fields.Many2one('hr.employee','Courier', ondelete='restrict')
+    vehicle_id = fields.Many2many('fleet.vehicle','Vehicle', ondelete='restrict')
     departure_date = fields.Datetime('Departure Date')
     finished_date = fields.Datetime('Finished Date')
     state = fields.Selection([
@@ -20,7 +20,7 @@ class pickup_delivery_trip(models.Model):
         ('finished', 'Finished'),
         ('cancelled', 'Cancelled'),
     ], 'State', required=True, default='draft')
-    trip_line_ids = fields.One2many('pickup.delivery.trip.line','trip_id','Trip Lines', required=True)
+    trip_line_ids = fields.One2many('pickup.delivery.trip.line','trip_id','Trip Lines')
 
     @api.one
     def action_ready(self):

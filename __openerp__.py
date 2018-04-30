@@ -15,7 +15,7 @@
 	],
    	'depends': ['base', 'web', 'mail', 'chjs_dated_setting', 'account', 'website'],
    	'data': [
-            
+            'views/pickup_delivery_trip.xml'
 	],
     'demo': [
     ],
